@@ -1,10 +1,10 @@
 # ERA-SESSION16 Transformer Implementation with OCP, PS & AMP in PytorchLightning
 
 ### Achieved:
-1. **Training Loss: 2.920**
-2. **CER Score: 0.691**
+1. **Training Loss: 1.740**
+2. **CER Score: 0.526**
 3. **BLEU Score: 0.000**
-4. **WER Score: 1.080**
+4. **WER Score: 0.969**
 
 ### Tasks:
 1. :heavy_check_mark: Pick the "en-fr" dataset from opus_books
@@ -76,13 +76,10 @@ decoder = Decoder(nn.ModuleList([d1, d2, d3, d3, d2, d1]))
 ```
 ### Loss & Other Metrics
 **Training Loss:**
-![image](https://github.com/RaviNaik/ERA-SESSION15/assets/23289802/add4a735-9e52-4c4d-8af7-a79289f3f974)
+![image](https://github.com/RaviNaik/ERA-SESSION16/assets/23289802/476c27ff-b38a-4c78-a457-449960030c83)
+
 
 **CER, WER & BLEU Score:**
-![image](https://github.com/RaviNaik/ERA-SESSION15/assets/23289802/20cd3e25-f4cc-420a-82f8-8e472a9fd554)
+![image](https://github.com/RaviNaik/ERA-SESSION16/assets/23289802/4ce898a7-b507-4274-abd2-689793da1242)
 
 ### Tensorboard Plots 
-![image](https://github.com/RaviNaik/ERA-SESSION15/assets/23289802/61517ac4-9abf-438e-93bd-cf16694a620a)
-![image](https://github.com/RaviNaik/ERA-SESSION15/assets/23289802/776de3ae-6c94-40aa-bc69-10b19646ff5d)
-![image](https://github.com/RaviNaik/ERA-SESSION15/assets/23289802/549f6bf7-fbcf-41d2-8f6a-356415d32df2)
-![image](https://github.com/RaviNaik/ERA-SESSION15/assets/23289802/be6343d4-0e42-4d72-af14-92b49ac6e844)
