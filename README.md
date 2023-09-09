@@ -5,6 +5,7 @@
 2. **CER Score: 0.526**
 3. **BLEU Score: 0.000**
 4. **WER Score: 0.969**
+**Note:** The scores in the notebook mentions the score at the end of training which is average of all epochs, so it is high.
 
 ### Tasks:
 1. :heavy_check_mark: Pick the "en-fr" dataset from opus_books
@@ -83,3 +84,17 @@ decoder = Decoder(nn.ModuleList([d1, d2, d3, d3, d2, d1]))
 ![image](https://github.com/RaviNaik/ERA-SESSION16/assets/23289802/4ce898a7-b507-4274-abd2-689793da1242)
 
 ### Tensorboard Plots 
+**Loss**
+![image](https://github.com/RaviNaik/ERA-SESSION16/assets/23289802/2c511d12-6a16-458e-8905-38db428c3e13)
+
+**CER**
+![image](https://github.com/RaviNaik/ERA-SESSION16/assets/23289802/43839fa7-9c04-418c-96a8-6d8381adb171)
+
+**WER**
+![image](https://github.com/RaviNaik/ERA-SESSION16/assets/23289802/b3e927dc-b709-466b-bc47-54d899d805fa)
+
+**BLEU**
+![image](https://github.com/RaviNaik/ERA-SESSION16/assets/23289802/fb375d9b-05ca-4821-8a88-65adeafb160d)
+
+
+
