@@ -4,7 +4,7 @@
 1. **Training Loss: 1.740**
 2. **CER Score: 0.526**
 3. **BLEU Score: 0.000**
-4. **WER Score: 0.969**
+4. **WER Score: 0.969** 
 **Note:** The scores in the notebook mentions the score at the end of training which is average of all epochs, so it is high.
 
 ### Tasks:
