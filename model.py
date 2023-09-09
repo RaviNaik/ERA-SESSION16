@@ -1,5 +1,5 @@
 import os
-from typing import Any
+from typing import Any, Dict
 import torch
 import torch.nn as nn
 import math
@@ -331,7 +331,12 @@ class TransformerModel(L.LightningModule):
         self.predicted = []
         self.expected = []
 
-    def build_transformer(self):
+    def build_transformer(self) -> Transformer:
+        """Builds the transformer module which can then be used in forward method
+
+        Returns:
+            Transformer: Transformer object
+        """
         src_embed = InputEmbeddings(
             d_model=self.d_model, vocab_size=self.src_vocab_size
         )
@@ -386,6 +391,7 @@ class TransformerModel(L.LightningModule):
             )
 
             decoder_blocks.append(decoder_block)
+        # Fetch individual encoder and decoder blocks for parameter sharing
         e1, e2, e3 = encoder_blocks
         d1, d2, d3 = decoder_blocks
         encoder = Encoder(nn.ModuleList([e1, e2, e3, e3, e2, e1]))
@@ -410,7 +416,12 @@ class TransformerModel(L.LightningModule):
                 nn.init.xavier_uniform_(p)
         return transformer
 
-    def configure_optimizers(self) -> Any:
+    def configure_optimizers(self) -> Dict:
+        """Configure optimizer and scheduler
+
+        Returns:
+            Dict: Returns the optimizer and scheduler as required by lightning
+        """
         optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate, eps=1e-9)
         scheduler = torch.optim.lr_scheduler.OneCycleLR(
             optimizer=optimizer,
@@ -428,7 +439,16 @@ class TransformerModel(L.LightningModule):
             "lr_scheduler": {"scheduler": scheduler, "interval": "step"},
         }
 
-    def forward(self, x):
+    def forward(self, x: torch.FloatTensor) -> torch.FloatTensor:
+        """Performs model forward pass on input tensors containing
+        encoder, decoder inputs and masks.
+
+        Args:
+            x (torch.FloatTensor): Tensor with encoder and decoder inputs and masks
+
+        Returns:
+            torch.FloatTensor: Output from final projection layer after decoder block
+        """
         encoder_input = x["encoder_input"]
         decoder_input = x["decoder_input"]
         encoder_mask = x["encoder_mask"]

@@ -1,4 +1,10 @@
+"""Dataset Module. 
+    Creates English to France Translation dataset. 
+    The dataset class is then used to create train and validation dataloaders as well as
+    lightning data modle
+"""
 import re
+from typing import List, Dict
 import torch
 from torch.utils.data import DataLoader, Dataset, random_split
 
@@ -17,7 +23,19 @@ def causal_mask(size):
     return mask == 0
 
 
-def process_dataset(ds: HFDataset, config):
+def process_dataset(ds: HFDataset, config: Dict) -> List[Dict]:
+    """Processes the dataset to remove all source language sentences
+    with more than 150 tokens and target language sentences with more than 10 tokens
+    as compared to source language tokens
+
+    Args:
+        ds (HFDataset): HuggingFace dataset to be modified
+        config (Dict): Configuration dictionary
+
+    Returns:
+        List[Dict]: Returns list of dictionaries containing index,
+        source & target sentences
+    """
     cleaned_data = []
     for item in ds:
         source = item["translation"][config["lang_src"]]
@@ -33,6 +51,12 @@ def process_dataset(ds: HFDataset, config):
 
 
 class BilingualDataset(Dataset):
+    """Translation Dataset creator
+
+    Args:
+        Dataset (_type_): PyTorch Dataset Parent class
+    """
+
     def __init__(
         self,
         ds,
